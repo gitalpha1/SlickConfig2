@@ -2309,9 +2309,9 @@ void init_xretrace()
    retrace_timer_handle = _set_timer(retrace_timer_rate, retrace_timer_callback1);
    xretrace_not_running = false;
 
-   retrace_line_marker_pic_index_cur = _find_or_add_picture(XRETRACE_PATH :+ '_xretrcur.png'); 
-   retrace_line_marker_pic_index_mod = _find_or_add_picture(XRETRACE_PATH :+ '_xretrmod.png'); 
-   retrace_line_marker_pic_index_demod = _find_or_add_picture(XRETRACE_PATH :+ '_xretrdemod.png'); 
+   retrace_line_marker_pic_index_cur = _find_or_add_picture(XRETRACE_PATH :+ '_xretrcur.png@native'); 
+   retrace_line_marker_pic_index_mod = _find_or_add_picture(XRETRACE_PATH :+ '_xretrmod.png@native'); 
+   retrace_line_marker_pic_index_demod = _find_or_add_picture(XRETRACE_PATH :+ '_xretrdemod.png@native'); 
    //retrace_line_marker_pic_index_inv = _find_or_add_picture(XRETRACE_PATH :+ '_xretrinv.png'); 
    retrace_line_marker_pic_index_inv = 0;
 
