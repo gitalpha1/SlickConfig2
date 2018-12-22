@@ -1,0 +1,49 @@
+<!--
+************************************************************** 
+*     ANY MODIFICATION OF THE BELOW LICENSE INFORMATION      * 
+*             WILL INVALIDATE THIS LICENSE FILE              * 
+************************************************************** 
+#
+INCREMENT vswb vsflex 15.00 permanent uncounted HOSTID=ANY \
+	ISSUED=1-jun-2010 SN=SERIAL:WB354167|LICTYPE:STD \
+	START=1-jan-1980 TS_OK SIGN="010F 485C 4E28 F1C6 D5D6 1434 \
+	5C9C F47A 5BB4 B80C 3603 E2FC C40A D05B D273 3DB9 6695 167A \
+	BC0D 5024 E906"
+
+#
+-->
+<Licenses>
+    <License>
+        <LicenseProperties>
+            <Property name="Comment" value="
+**************************************************************
+*                                                            *
+*               This license was created for:                *
+*                                                            *
+*                      GRAEME PRENTICE                       *
+*                 GRAEME.PRENTICE@GMAIL.COM                  *
+*                       2 WARNER PLACE                       *
+*                         HEATHCOTE                          *
+*                 CHRISTCHURCH N/A 8022 NZL                  *
+*                       0064033844072                        *
+*                                                            *
+**************************************************************"/>
+            <Property name="IssueDate" value="2018-10-26 20:39Z"/>
+            <Property name="LicenseCount" value="1"/>
+            <Property name="LicenseType" value="STD"/>
+            <Property name="ProductID" value="VSWB"/>
+            <Property name="Serial" value="WB354167"/>
+            <Property name="Start" value="1980-01-01"/>
+            <Property name="Vendor" value="SlickEditInc"/>
+            <Property name="Version" value="23.00"/>
+        </LicenseProperties>
+        <Signature>
+            qad4Ddf0XRdN5HQ9mNdXF7injKrc6IHGZjEB14J8IP+wLxMrdfy10FX8FIX7cB9E
+            6kUm+PjLPqerijfbGTNh5cgEfWY7AEnumtYJRyI3jiFGsKiB5G02GwN2sWqfKR0W
+            o1hBlWdkx53XbfVyQHAuXzTH1RHsWeQfRo/dBd+tROOp/RrOdfKmGarke0F54Wks
+            XiFqs6voGB/S2HvKH92SWj2junYbOGyOQ1wsjDQdlJWZUfg6L3PeE5Zub+9Ux8y4
+            scONXDgCt4uXSo2wNpI9cD6BMBzTiEL5A7AAfXBBJhru5Q/mgUqBNbDvEbflFTM3
+            loJqT1Jx7QA/zVLM09Mk1A==
+        </Signature>
+    </License>
+</Licenses>
