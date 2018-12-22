@@ -1,0 +1,582 @@
+
+defeventtab default_keys
+def  'A-a'-'A-z'=
+def  'A-F6'=
+def  'F10'=
+def  ' '= maybe_complete
+def  ')'= keyin_match_paren
+def  '*'= rexx_star
+def  '?'= maybe_list_matches
+def  'F1'= help
+def  'F2'= toggle_search
+def  'F3'= repeat_find_word_at_cursor
+def  'F4'= next_bookmark
+def  'F5'= GFH_step_thru_goback_history
+def  'F6'= last_recorded_macro
+def  'F7'= set_bookmark
+def  'F8'= select_code_block
+def  'F9'= complete_prev_no_dup
+def  'F10'= debug_step_over
+def  'F11'= debug_step_into
+def  'F12'= GFH_last_buffer
+def  'ENTER'= split_insert_line
+def  'TAB'= move_text_tab
+def  'ESC'= cmdline_toggle
+def  'BACKSPACE'= linewrap_rubout
+def  'HOME'= begin_line_text_toggle
+def  'END'= end_line
+def  'LEFT'= cursor_left
+def  'RIGHT'= cursor_right
+def  'UP'= cursor_up
+def  'DOWN'= cursor_down
+def  'PGUP'= page_up
+def  'PGDN'= page_down
+def  'DEL'= linewrap_delete_char
+def  'INS'= insert_toggle
+def  'CONTEXT'= context_menu
+def  'M-,'= function_argument_help
+def  'M-.'= list_symbols
+def  'M-1'= cursor_error
+def  'M-3'= activate_watch
+def  'M-4'= activate_variables
+def  'M-5'= activate_registers
+def  'M-6'= activate_memory
+def  'M-7'= activate_call_stack
+def  'M-='= execute_selection
+def  'M-A'= select_all
+def  'M-C'= copy_to_clipboard
+def  'M-E'= set_find
+def  'M-F'= gui_find
+def  'M-G'= find_next
+def  'M-M'= iconize_window
+def  'M-N'= new
+def  'M-O'= gui_open
+def  'M-P'= gui_print
+def  'M-Q'= safe_exit
+def  'M-S'= save
+def  'M-T'= macos_font_config
+def  'M-V'= paste
+def  'M-W'= close_window
+def  'M-X'= cut
+def  'M-Z'= undo
+def  'M-F1'= api_index
+def  'M-F2'= move_edge
+def  'M-F3'= create_tile
+def  'M-F4'= safe_exit
+def  'M-F5'= restore_mdi
+def  'M-F7'= move_mdi
+def  'M-F8'= size_mdi
+def  'M-F9'= debug_breakpoints
+def  'M-F10'= maximize_mdi
+def  'M-PAD-STAR'= debug_show_next_statement
+def  'M-LEFT'= begin_line
+def  'M-RIGHT'= end_line
+def  'M-UP'= top_of_buffer
+def  'M-DOWN'= bottom_of_buffer
+def  'S- '= keyin_space
+def  'S-F2'= toggle_bookmarks
+def  'S-F3'= repeat_find_word_at_cursor_reverse
+def  'S-F4'= prev_bookmark
+def  'S-F5'= debug_stop
+def  'S-F6'= resync
+def  'S-F7'= push_bookmark
+def  'S-F8'= hide_code_block
+def  'S-F9'= complete_next_no_dup
+def  'S-F10'= project_compile
+def  'S-F11'= debug_step_out
+def  'S-F12'= save
+def  'S-ENTER'= keyin_enter
+def  'S-TAB'= move_text_backtab
+def  'S-BACKSPACE'= undo_cursor
+def  'S-HOME'= cua_select
+def  'S-END'= cua_select
+def  'S-LEFT'= cua_select
+def  'S-RIGHT'= cua_select
+def  'S-UP'= cua_select
+def  'S-DOWN'= cua_select
+def  'S-PGUP'= cua_select
+def  'S-PGDN'= cua_select
+def  'S-DEL'= delete_line
+def  'S-INS'= paste
+def  'S-M-/'= help
+def  'S-M-C'= macos_show_colors
+def  'S-M-G'= find_prev
+def  'S-M-S'= save_as
+def  'S-M-V'= paste_replace_word
+def  'S-M-W'= close_buffer
+def  'S-M-Z'= redo
+def  'S-M-HOME'= cua_select
+def  'S-M-END'= cua_select
+def  'S-M-LEFT'= cua_select
+def  'S-M-RIGHT'= cua_select
+def  'S-M-UP'= cua_select
+def  'S-M-DOWN'= cua_select
+def  'C- '= autocomplete
+def  'C-,'= pop_bookmark
+def  'C-.'= push_tag
+def  'C-/'= push_ref
+def  'C-0'= alt_bookmark
+def  'C-1'= alt_bookmark
+def  'C-2'-'C-9'= alt_bookmark
+def  'C-='= diff
+def  'C-A'= select_all
+def  'C-B'= select_block
+def  'C-C'= copy_to_clipboard
+def  'C-D'= gui_cd
+def  'C-E'= cut_end_line
+def  'C-F'= open_collapsed
+def  'C-G'= find_next
+def  'C-H'= counterpart
+def  'C-I'= i_search
+def  'C-J'= gui_goto_line
+def  'C-K'= copy_word
+def  'C-L'= select_line
+def  'C-M'= show_my_fave_cmds1
+def  'C-N'= next_buffer
+def  'C-O'= gui_open
+def  'C-P'= prev_buffer
+def  'C-Q'= quick_search
+def  'C-R'= gui_replace
+def  'C-S'= save
+def  'C-T'= transpose_chars
+def  'C-U'= deselect
+def  'C-V'= paste
+def  'C-X'= cut
+def  'C-Y'= redo
+def  'C-Z'= undo
+def  'C-['= next_hotspot
+def  'C-]'= find_matching_paren
+def  'C-F1'= wh
+def  'C-F2'= toggle_defs
+def  'C-F3'= find_next_word_at_cursor
+def  'C-F4'= quit
+def  'C-F5'= project_execute
+def  'C-F6'= next_window
+def  'C-F7'= move_window
+def  'C-F8'= hide_selection
+def  'C-F9'= complete_prev
+def  'C-F10'= debug_run_to_cursor
+def  'C-F11'= record_macro_toggle
+def  'C-F12'= GFH_step_thru_buffer_list
+def  'C-ENTER'= nosplit_insert_line
+def  'C-TAB'= next_window
+def  'C-BACKSPACE'= delete_prev_token
+def  'C-HOME'= top_of_buffer
+def  'C-END'= bottom_of_buffer
+def  'C-LEFT'= prev_word
+def  'C-RIGHT'= next_word
+def  'C-UP'= prev_tag
+def  'C-DOWN'= next_tag
+def  'C-PGUP'= top_of_window
+def  'C-PGDN'= bottom_of_window
+def  'C-DEL'= delete_next_token
+def  'C-INS'= copy_to_clipboard
+def  'C-M-A'= activate_autos
+def  'C-M-B'= activate_breakpoints
+def  'C-M-C'= activate_call_stack
+def  'C-M-H'= activate_threads
+def  'C-M-L'= activate_locals
+def  'C-M-M'= activate_members
+def  'C-M-V'= activate_variables
+def  'C-M-W'= activate_watch
+def  'C-S- '= complete_more
+def  "C-S-'"= gui_find
+def  'C-S-,'= complete_prev
+def  'C-S-.'= complete_next
+def  'C-S-6'= my_cur_word
+def  'C-S-B'= list_buffers
+def  'C-S-C'= append_to_clipboard
+def  'C-S-D'= javadoc_editor
+def  'C-S-E'= list_errors
+def  'C-S-F'= find_in_files
+def  'C-S-G'= find_prev
+def  'C-S-H'= hex
+def  'C-S-I'= reverse_i_search
+def  'C-S-J'= toggle_bookmark
+def  'C-S-K'= cut_word
+def  'C-S-L'= lowcase_word
+def  'C-S-M'= start_process
+def  'C-S-O'= expand_alias
+def  'C-S-P'= expand_extension_alias
+def  'C-S-R'= replace_in_files
+def  'C-S-S'= set_next_error
+def  'C-S-T'= transpose_words
+def  'C-S-U'= upcase_word
+def  'C-S-V'= list_clipboards
+def  'C-S-W'= prev_window
+def  'C-S-X'= append_cut
+def  'C-S-Z'= zoom_window
+def  'C-S-['= prev_hotspot
+def  'C-S-F3'= find_prev_word_at_cursor
+def  'C-S-F4'= toggle_bookmark
+def  'C-S-F5'= debug_restart
+def  'C-S-F6'= prev_window
+def  'C-S-F8'= select_paren_block
+def  'C-S-F9'= complete_next
+def  'C-S-F12'= GFH_step_thru_goback_history
+def  'C-S-ENTER'= nosplit_insert_line_above
+def  'C-S-TAB'= prev_window
+def  'C-S-HOME'= cua_select
+def  'C-S-END'= cua_select
+def  'C-S-LEFT'= select_to_prev_token
+def  'C-S-RIGHT'= select_to_next_token
+def  'C-S-UP'= prev_error
+def  'C-S-DOWN'= next_error
+def  'C-S-DEL'= delete_end_line
+def  'A-,'= function_argument_help
+def  'A-.'= list_symbols
+def  'A-0'= alt_gtbookmark_new
+def  'A-1'= alt_gtbookmark_new
+def  'A-2'= alt_gtbookmark_new
+def  'A-3'= alt_gtbookmark_new
+def  'A-4'= alt_gtbookmark_new
+def  'A-5'= alt_gtbookmark_new
+def  'A-6'= alt_gtbookmark_new
+def  'A-7'= alt_gtbookmark_new
+def  'A-8'= alt_gtbookmark_new
+def  'A-9'= alt_gtbookmark_new
+def  'A-='= execute_selection
+def  'A-L'= lowcase_char
+def  'A-T'= transpose_lines
+def  'A-U'= upcase_char
+def  'A-F1'= api_index
+def  'A-F2'= toggle_refs
+def  'A-F3'= create_tile
+def  'A-F4'= safe_exit
+def  'A-F5'= restore_mdi
+def  'A-F6'= show_selection
+def  'A-F7'= move_mdi
+def  'A-F8'= show_all
+def  'A-F9'= complete_list
+def  'A-F10'= maximize_mdi
+def  'A-F12'= load
+def  'A-BACKSPACE'= undo
+def  'A-PAD-STAR'= debug_show_next_statement
+def  'A-LEFT'= cursor_to_prev_token
+def  'A-RIGHT'= cursor_to_next_token
+def  'A-UP'= scroll_up
+def  'A-DOWN'= scroll_down
+def  'A-M-M'= iconize_all
+def  'A-M-W'= close_all
+def  'A-S-F'= find
+def  'A-S-M'= comment
+def  'A-S-V'= paste_replace_word
+def  'A-S-F6'= show_func
+def  'A-S-F8'= hide_all_comments
+def  'A-S-F9'= complete_more
+def  'A-S-F12'= GFH_toggle_buffer_list_history_enable
+def  'A-S-LEFT'= cua_select
+def  'A-S-RIGHT'= cua_select
+def  'A-S-UP'= cua_select
+def  'A-S-DOWN'= cua_select
+def  'C-A-A'= activate_autos
+def  'C-A-B'= activate_breakpoints
+def  'C-A-C'= activate_call_stack
+def  'C-A-H'= activate_threads
+def  'C-A-L'= activate_locals
+def  'C-A-M'= activate_members
+def  'C-A-V'= activate_variables
+def  'C-A-W'= activate_watch
+def  'LBUTTON-DOWN'= mou_click
+def  'RBUTTON-DOWN'= mou_click_menu_block
+def  'MBUTTON-DOWN'= mou_paste
+def  'BACK-BUTTON-DOWN'= back
+def  'FORWARD-BUTTON-DOWN'= forward
+def  'LBUTTON-DOUBLE-CLICK'= mou_select_word
+def  'LBUTTON-TRIPLE-CLICK'= mou_select_line
+def  'MOUSE-MOVE'= _mouse_move
+def  'WHEEL-UP'= fast_scroll
+def  'WHEEL-DOWN'= fast_scroll
+def  'S-LBUTTON-DOWN'= mou_extend_selection
+def  'C-LBUTTON-DOWN'= mou_click_copy
+def  'C-RBUTTON-DOWN'= mou_move_to_cursor
+def  'C-WHEEL-UP'= scroll_page_up
+def  'C-WHEEL-DOWN'= scroll_page_down
+def  'C-S-RBUTTON-DOWN'= mou_copy_to_cursor
+def  'A-LBUTTON-DOWN'= mou_click_copy
+def  'ON-HSB-THUMB-POS' ' '= asm390_space
+def  'ON-HSB-THUMB-POS' 'TAB'= cob_tab
+def  'ON-HSB-THUMB-POS' 'S-TAB'= cob_backtab
+
+defeventtab xml_keys
+def  ' '= html_space
+def  '%'-'&'= auto_codehelp_key
+def  '('= auto_functionhelp_key
+def  '.'= auto_codehelp_key
+def  '/'= xml_slash
+def  ':'= html_key
+def  '<'= auto_codehelp_key
+def  '='= auto_codehelp_key
+def  '>'= xml_gt
+def  '{'= html_key
+def  '}'= html_key
+def  'ENTER'= xml_enter
+def  'TAB'= smarttab
+
+defeventtab grep_keys
+def  'ENTER'= grep_goto
+def  'DEL'= grep_delete
+def  'C-UP'= grep_prev_file
+def  'C-DOWN'= grep_next_file
+def  'LBUTTON-DOUBLE-CLICK'= grep_goto_mouse
+
+defeventtab argument_completion_keys
+def  ' '= ArgumentCompletionDoKey
+def  'ENTER'= ArgumentCompletionDoKey
+def  'TAB'= ArgumentCompletionDoKey
+def  'ESC'= ArgumentCompletionDoKey
+def  'HOME'= ArgumentCompletionDoKey
+def  'END'= ArgumentCompletionDoKey
+def  'UP'= ArgumentCompletionDoKey
+def  'DOWN'= ArgumentCompletionDoKey
+def  'PGUP'= ArgumentCompletionDoKey
+def  'PGDN'= ArgumentCompletionDoKey
+def  'S-TAB'= ArgumentCompletionDoKey
+def  'C-G'= ArgumentCompletionDoKey
+def  'C-I'= ArgumentCompletionDoKey
+def  'C-K'= ArgumentCompletionDoKey
+
+defeventtab java_keys
+def  ' '= java_space
+def  '#'= c_pound
+def  '('= java_auto_functionhelp_key
+def  '*'= c_asterisk
+def  ','= java_comma
+def  '.'= java_auto_codehelp_key
+def  ':'= java_colon
+def  '<'= java_auto_functionhelp_key
+def  '='= java_auto_codehelp_key
+def  '>'= java_auto_codehelp_key
+def  '@'= c_atsign
+def  '['= java_startbracket
+def  '{'= java_begin
+def  '}'= java_endbrace
+def  'ENTER'= java_enter
+def  'TAB'= smarttab
+
+defeventtab c_keys
+def  ' '= c_space
+def  '#'= c_pound
+def  '('= auto_functionhelp_key
+def  '*'= c_asterisk
+def  '.'= auto_codehelp_key
+def  '/'= c_slash
+def  ':'= c_colon
+def  '<'= auto_functionhelp_key
+def  '='= auto_codehelp_key
+def  '>'= auto_codehelp_key
+def  '@'= c_atsign
+def  '{'= c_begin
+def  '}'= c_endbrace
+def  'ENTER'= c_enter
+def  'TAB'= smarttab
+
+defeventtab slick_keys
+def  ' '= slick_space
+def  '#'= c_pound
+def  '('= auto_functionhelp_key
+def  '*'= c_asterisk
+def  '.'= auto_codehelp_key
+def  '/'= c_slash
+def  '>'= auto_codehelp_key
+def  '@'= c_atsign
+def  '{'= c_begin
+def  '}'= c_endbrace
+def  'ENTER'= slick_enter
+def  'TAB'= smarttab
+
+defeventtab fileman_keys
+def  ' '= fileman_space
+def  '!'-'range-last-char-key'= maybe_normal_character
+def  'F1'= fileman_help
+def  'ENTER'= fileman_enter
+def  'S-UP'= fileman_select_up
+def  'S-DOWN'= fileman_select_down
+def  'S-PGUP'= fileman_deselect_up
+def  'S-PGDN'= fileman_deselect_down
+def  'S-M-A'= select_all
+def  'S-M-B'= fileman_backup
+def  'S-M-C'= fileman_copy
+def  'S-M-D'= fileman_delete
+def  'S-M-E'= fileman_edit
+def  'S-M-F'= fileman_find
+def  'S-M-G'= fileman_replace
+def  'S-M-M'= fileman_move
+def  'S-M-N'= fileman_keyin_name
+def  'S-M-O'= fsort
+def  'S-M-P'= fileman_attr
+def  'S-M-R'= for_select
+def  'S-M-T'= fileman_attr
+def  'A-S-A'= select_all
+def  'A-S-B'= fileman_backup
+def  'A-S-C'= fileman_copy
+def  'A-S-D'= fileman_delete
+def  'A-S-E'= fileman_edit
+def  'A-S-F'= fileman_find
+def  'A-S-G'= fileman_replace
+def  'A-S-M'= fileman_move
+def  'A-S-N'= fileman_keyin_name
+def  'A-S-O'= fsort
+def  'A-S-P'= fileman_attr
+def  'A-S-R'= for_select
+def  'A-S-T'= fileman_attr
+def  'LBUTTON-DOUBLE-CLICK'= fileman_enter
+
+defeventtab process_keys
+def  'ENTER'= process_enter
+def  'TAB'= process_tab
+def  'BACKSPACE'= process_rubout
+def  'HOME'= process_begin_line
+def  'UP'= process_up
+def  'DOWN'= process_down
+def  'LBUTTON-DOUBLE-CLICK'= cursor_error
+
+defeventtab asm390_keys
+def  ' '= asm390_space
+def  'TAB'= cob_tab
+def  'S-TAB'= cob_backtab
+
+defeventtab slickc_stack_keys
+def  'ENTER'= slickc_stack_goto
+def  'LBUTTON-DOUBLE-CLICK'= slickc_stack_goto
+
+defeventtab pascal_keys
+def  ' '= pascal_space
+def  '('= auto_functionhelp_key
+def  '.'= auto_codehelp_key
+def  'D'= pascal_d
+def  'N'= pascal_n
+def  'Y'= pascal_y
+def  'd'= pascal_d
+def  'n'= pascal_n
+def  'y'= pascal_y
+def  'ENTER'= pascal_enter
+
+defeventtab ext_keys
+def  ' '= ext_space
+def  '('= auto_functionhelp_key
+
+defeventtab plsql_keys
+def  ' '= plsql_space
+def  '#'= plsql_maybe_case_word
+def  '$'= plsql_maybe_case_word
+def  '0'-'9'= plsql_maybe_case_word
+def  ';'= plsql_semi
+def  'A'-'Z'= plsql_maybe_case_word
+def  '_'= plsql_maybe_case_word
+def  'a'-'z'= plsql_maybe_case_word
+def  'ENTER'= plsql_enter
+def  'BACKSPACE'= plsql_maybe_case_backspace
+
+defeventtab sqlserver_keys
+def  ' '= sqlserver_space
+def  '#'= sqlserver_maybe_case_word
+def  '$'= sqlserver_maybe_case_word
+def  '0'-'9'= sqlserver_maybe_case_word
+def  'A'-'Z'= sqlserver_maybe_case_word
+def  '_'= sqlserver_maybe_case_word
+def  'a'-'z'= sqlserver_maybe_case_word
+def  'ENTER'= sqlserver_enter
+def  'BACKSPACE'= sqlserver_maybe_case_backspace
+
+defeventtab codehelp_keys
+def  ' '-''= codehelp_key
+def  'ENTER'= codehelp_key
+def  'TAB'= codehelp_key
+def  'ESC'= codehelp_key
+def  'UP'= codehelp_key
+def  'DOWN'= codehelp_key
+def  'PGUP'= codehelp_key
+def  'PGDN'= codehelp_key
+def  'S-HOME'= codehelp_key
+def  'S-END'= codehelp_key
+def  'S-UP'= codehelp_key
+def  'S-DOWN'= codehelp_key
+def  'S-PGUP'= codehelp_key
+def  'S-PGDN'= codehelp_key
+def  'C- '= codehelp_key
+def  'C-C'= codehelp_key
+def  'C-G'= codehelp_key
+def  'C-I'= codehelp_key
+def  'C-K'= codehelp_key
+def  'C-UP'= codehelp_key
+def  'C-DOWN'= codehelp_key
+def  'C-PGUP'= codehelp_key
+def  'C-PGDN'= codehelp_key
+def  'A-,'= codehelp_key
+def  'A-.'= codehelp_key
+def  'A-INS'= codehelp_key
+
+defeventtab actionscript_keys
+def  ' '= actionscript_space
+def  '('= auto_functionhelp_key
+def  '.'= auto_codehelp_key
+def  '='= auto_codehelp_key
+def  '{'= actionscript_begin
+def  '}'= actionscript_endbrace
+def  'ENTER'= actionscript_enter
+def  'TAB'= smarttab
+
+defeventtab ada_keys
+def  ' '= ada_space
+def  "'"= auto_codehelp_key
+def  '('= auto_functionhelp_key
+def  '.'= auto_codehelp_key
+def  'ENTER'= ada_enter
+
+
+
+
+
+
+
+defeventtab jcl_keys
+def  ' '= embedded_key
+def  '('= embedded_key
+def  '.'= embedded_key
+def  ':'= embedded_key
+def  '{'= embedded_key
+def  '}'= embedded_key
+def  'ENTER'= embedded_key
+def  'TAB'= embedded_key
+
+defeventtab auto_complete_keys
+def  ' '-''= AutoCompleteDoKey
+def  'ENTER'= AutoCompleteDoKey
+def  'TAB'= AutoCompleteDoKey
+def  'ESC'= AutoCompleteDoKey
+def  'BACKSPACE'= AutoCompleteDoKey
+def  'UP'= AutoCompleteDoKey
+def  'DOWN'= AutoCompleteDoKey
+def  'PGUP'= AutoCompleteDoKey
+def  'PGDN'= AutoCompleteDoKey
+def  'DEL'= AutoCompleteDoKey
+def  'S-TAB'= AutoCompleteDoKey
+def  'S-HOME'= AutoCompleteDoKey
+def  'S-END'= AutoCompleteDoKey
+def  'S-PGUP'= AutoCompleteDoKey
+def  'S-PGDN'= AutoCompleteDoKey
+def  'C-C'= AutoCompleteDoKey
+def  'C-G'= AutoCompleteDoKey
+def  'C-I'= AutoCompleteDoKey
+def  'C-K'= AutoCompleteDoKey
+def  'C-PGUP'= AutoCompleteDoKey
+def  'C-PGDN'= AutoCompleteDoKey
+def  'C-S- '= AutoCompleteDoKey
+
+defeventtab html_keys
+def  ' '= html_space
+def  '%'= auto_codehelp_key
+def  '&'= auto_codehelp_key
+def  '('= auto_functionhelp_key
+def  '.'= auto_codehelp_key
+def  '/'= auto_codehelp_key
+def  ':'= html_key
+def  '<'= html_lt
+def  '='= auto_codehelp_key
+def  '>'= html_gt
+def  '{'= html_key
+def  '}'= html_key
+def  'ENTER'= html_enter
+def  'TAB'= html_key
+
