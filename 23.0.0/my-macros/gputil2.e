@@ -149,24 +149,24 @@ _command void xnotepad_create_time_date_string() name_info(',')
 }
 
 
-_command gui_save_config(_str save_immediate='') name_info(','VSARG2_EDITORCTL)
-{
-   int status=_promptSaveConfig();
-   if (status!=1) {
-      return(status);
-   }
-   status = (save_config(save_immediate));
-
-   if ( status == 0 ) {
-      result = _message_box("Export all options?", '', IDYES|IDNO|MB_ICONQUESTION,IDNO);
-      if ( result != IDYES ) {
-         return 0;
-      }
-      _mdi.export_options('-a  C:\SlickConfig\save-config\V23-' :+ stranslate(_date('I'),'-','/') :+ '-' :+ 
-                                                                   stranslate(_time('M'), '-', ':') :+ '.zip');
-   }
-   return status;
-}
+//_command gui_save_config(_str save_immediate='') name_info(','VSARG2_EDITORCTL)
+//{
+//   int status=_promptSaveConfig();
+//   if (status!=1) {
+//      return(status);
+//   }
+//   status = (save_config(save_immediate));
+//
+//   if ( status == 0 ) {
+//      result = _message_box("Export all options?", '', IDYES|IDNO|MB_ICONQUESTION,IDNO);
+//      if ( result != IDYES ) {
+//         return 0;
+//      }
+//      _mdi.export_options('-a  C:\SlickConfig\save-config\V23-' :+ stranslate(_date('I'),'-','/') :+ '-' :+ 
+//                                                                   stranslate(_time('M'), '-', ':') :+ '.zip');
+//   }
+//   return status;
+//}
 
 
 

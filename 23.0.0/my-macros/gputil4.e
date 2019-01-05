@@ -108,3 +108,23 @@ _command int search_cur_word() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDI
 }
 
 
+_command void search_cpp_ref() name_info(',')
+{
+   _str sw = get_search_cur_word();
+   if (sw == '') 
+      return;
+
+   goto_url("http://www.google.com/search?q=" :+ sw :+ "&as_sitesearch=cplusplus.com&btnI");
+}
+
+_command void search_devdocs_cpp() name_info(',')
+{
+   _str sw = get_search_cur_word();
+   if (sw == '') 
+      return;
+
+   push_clipboard_itype('CHAR','',1,true);
+   append_clipboard_text(sw);
+   goto_url("https://devdocs.io/cpp/");
+}
+

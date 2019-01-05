@@ -69,6 +69,7 @@ _command void load_my_modules()
    load_my_module2(path :+ 'my-macros' :+ FILESEP :+ 'gputil2.e');
    load_my_module2(path :+ 'my-macros' :+ FILESEP :+ 'gputil4.e');
    load_my_module2(path :+ 'my-macros' :+ FILESEP :+ 'xkeydefs.e');
+   load_my_module2(path :+ 'my-macros' :+ FILESEP :+ 'desktop-save.e');
    //load_my_module2(path :+ 'my-macros' :+ FILESEP :+ 'ProjectTBExtra.e');
    //load_my_module2(path :+ 'my-macros' :+ FILESEP :+ 'ProjectTBExtraMenus.e');
 
