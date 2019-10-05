@@ -1333,7 +1333,7 @@ static void buffer_switch_setup_buffer_retrace_lists()
  * line modify flag has changed and updates the retrace lists if necessary.
  * 
  *****************************************************************************/
-static void maintain_cursor_retrace_history()
+void maintain_cursor_retrace_history()
 {
    if ( _no_child_windows() || !xretrace_history_enabled ) 
       return;

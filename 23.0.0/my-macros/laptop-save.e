@@ -56,6 +56,18 @@ _str save_file(_str filename,_str options)
       }
 #endif
    }
+
+   if ( pos(filename, 'autosave') ) {
+      return status;
+   }
+   if ( pos(filename, 'Google Drive') ) {
+      return status;
+   }
+   if ( pos(filename, 'OneDrive') ) {
+      return status;
+   }
+
+
    _str pa = 'C:\Users\Graeme\Google Drive\slick\laptop\backups\' :+ strip_filename(filename,'DN');
    if (!path_exists(pa)) {
       int result = make_path(pa);
@@ -91,6 +103,32 @@ _str save_file(_str filename,_str options)
 
 
 // temp
+
+
+
+_command gui_save_config(_str save_immediate='') name_info(','VSARG2_EDITORCTL)
+{
+   int status=_promptSaveConfig();
+   if (status!=1) {
+      return(status);
+   }
+   status = (save_config(save_immediate));
+
+   if ( status == 0 ) {
+      result := _message_box("Export all options?", '', IDYES|IDNO|MB_ICONQUESTION,IDNO);
+      if ( result != IDYES ) {
+         return 0;
+      }
+      _str p1 = 'V23-' :+ stranslate(_date('I'),'-','/') :+ '-' :+ 
+                                                                   stranslate(_time('M'), '-', ':') :+ '.zip';
+      _str fn = 'C:/GP/slick-config/temp/' :+ p1;;
+
+      _mdi.export_options('-a  ' :+ fn);
+      copy_file(fn, "C:/Users/Graeme/Google Drive/slick/laptop/backup-config/" :+ p1);
+      delete_file(fn);
+   }
+   return status;
+}
 
 
 

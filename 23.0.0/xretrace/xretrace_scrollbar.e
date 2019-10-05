@@ -313,7 +313,7 @@ static int find_nearest_marker(int formid, int wid)
 // _IsKeyDown(CTRL)
 
 
-int actual_move(boolean lbutton = false)
+int run_xrs_event_loop(boolean lbutton = false)
 {
    _control scrollbar_handle_image;
    _control current_line_image;
@@ -351,7 +351,7 @@ int actual_move(boolean lbutton = false)
    //mysay("start");
    close_me = 0;
    _set_timer(3000);
-   mou_mode(1);
+   mou_mode(2);
    mou_capture();
    boolean exit_event_loop = false;
    _str event;
@@ -373,6 +373,17 @@ int actual_move(boolean lbutton = false)
          exit_event_loop = true;
          edwin._set_focus();
          break;
+
+      case WHEEL_UP:
+         exit_event_loop = true;
+         edwin.up(4);
+         break;
+        
+      case WHEEL_DOWN:
+         exit_event_loop = true;
+         edwin.down(4);
+         break;
+
       case MOUSE_MOVE:
          if ( (mxnow > (scale2pix(xbar_wid.scrollbar_image.p_width, xbar_wid))) || (mxnow < 0) )  {
             // the mouse cursor left the area before 3 seconds was up
@@ -496,16 +507,13 @@ int actual_move(boolean lbutton = false)
          edwin.center_line();
          return 0;
 
-      // these don't work ?
-      //case WHEEL_UP:
-      //   mysay('uppp');
-      //   edwin.up(4);
-      //   break;
-      //  
-      //case WHEEL_DOWN:
-      //   mysay('down');
-      //   edwin.down(4);
-      //   break;
+      case WHEEL_UP:
+         edwin.up(4);
+         break;
+        
+      case WHEEL_DOWN:
+         edwin.down(4);
+         break;
 
       case 'ESC' :
          set_scrollbar_handle_colour(INACTIVE_SCROLLBAR_HANDLE_COLOUR, edwin);  
@@ -648,14 +656,42 @@ int actual_move(boolean lbutton = false)
 }
 
 
-scrollbar_image.mouse_move()
+scrollbar_image.wheel_up()
 {
    if ( _no_child_windows() ) {
       return 0;
    }
    //mysay('in');
-   actual_move();
-   //mysay('out');
+   run_xrs_event_loop();
+}
+
+scrollbar_image.wheel_down()
+{
+   if ( _no_child_windows() ) {
+      return 0;
+   }
+   //mysay('in');
+   run_xrs_event_loop();
+}
+
+//scrollbar_image.mouse_move()
+//{
+//   if ( _no_child_windows() ) {
+//      return 0;
+//   }
+//   run_xrs_event_loop();
+//}
+
+
+scrollbar_image.rbutton_down()
+{
+   if ( _no_child_windows() ) {
+      return 0;
+   }
+   int xbar_wid = p_active_form;
+   int edwin = GetEditorCtlWid(p_active_form);
+   int formid = find_xbar_form_from_wid(xbar_wid);
+   process_right_mouse_click(xbar_wid, edwin, formid);
 }
 
 
@@ -668,7 +704,7 @@ scrollbar_image.lbutton_down()
    int edwin = GetEditorCtlWid(p_active_form);
    int formid = find_xbar_form_from_wid(xbar_wid);
    edwin._set_focus();
-   actual_move(true);
+   run_xrs_event_loop(true);
 }
 
 
@@ -701,19 +737,20 @@ int register_xbar_form(int wid)
 }
 
 
-scrollbar_image.rbutton_down()
-{
-   int k = find_xbar_form_from_wid(p_window_id);
-   if ( k < 0 ) {
-      return 0;
-   }
-   int edwin = GetEditorCtlWid(p_window_id);
-   if ( edwin <= 0 ) {
-      return 0;
-   }
-   process_right_mouse_click(p_window_id, edwin, k );
-   return 0;
-}
+//scrollbar_image.rbutton_down()
+//{
+//   say("hhh m");
+//   int k = find_xbar_form_from_wid(p_window_id);
+//   if ( k < 0 ) {
+//      return 0;
+//   }
+//   int edwin = GetEditorCtlWid(p_window_id);
+//   if ( edwin <= 0 ) {
+//      return 0;
+//   }
+//   process_right_mouse_click(p_window_id, edwin, k );
+//   return 0;
+//}
 
 
 void xretrace_scrollbar_form.on_create()
@@ -872,6 +909,16 @@ void add_markup_to_xbar_for_edwin(int edwin, dlist & visited_list, dlist & chang
       }
    }
    p_window_id = wid;
+}
+
+
+void check_update_xretrace_scrollbar()
+{
+   if ( _no_child_windows()  ) 
+      return;
+
+   // update_xbar_forms returns a non zero value if there is an xretrace scrollbar that doesn't have markup yet
+   int edwin = update_xbar_forms();
 }
 
 
@@ -1063,5 +1110,160 @@ _menu xretrace_scrollbar_popup_menu {
 }
 //
 //
+
+
+
+int def_scroll_up_with_cursor;
+static int scroll_up_with_cursor_key_bindings;
+bool block_scroll_flag;
+
+void my_scroll_callback()
+{
+   block_scroll_flag = false;
+}
+
+
+void xscroll(bool is_up)
+{
+   bool xrs = false;
+   bool try_call_key = false;
+   _str ev;
+   if ( block_scroll_flag ) {
+      return;
+   }
+
+   if ( find_index('delete_xbar_windows', COMMAND_TYPE) != 0 ) {
+      xrs = true;
+   }
+
+   if ( def_scroll_up_with_cursor && !_IsKeyDown(SHIFT) || _IsKeyDown(CTRL) ) {
+      if ( p_window_id != null && _iswindow_valid(p_window_id) && p_window_id._isEditorCtl()) {
+
+         if ( substr(p_window_id.p_buf_name, 1, 1) == "." ) {
+            fast_scroll();
+            return;
+         }
+         if ( p_window_id != _get_focus() ) {
+            p_window_id._set_focus();
+         }
+
+         if (p_window_id.p_scroll_left_edge >= 0) 
+             p_window_id.p_scroll_left_edge = -1;
+
+         int p2;
+         save_pos(p2);
+         if ( _IsKeyDown(CTRL) ) 
+         {
+            if ( is_up ) 
+               cursor_up(8);
+            else
+               cursor_down(8);
+         }
+         else
+         {
+            if ( is_up ) 
+               cursor_up();
+            else
+               cursor_down();
+         }
+
+         mou_mode(2);
+         mou_capture();
+
+         while ( 1 ) {
+            ev = get_event('k');
+            //say(event2name(ev));
+            if ( xrs ) 
+               check_update_xretrace_scrollbar();
+            switch( ev ) {
+            default:
+               try_call_key = true;
+               break;
+            case RBUTTON_DOWN :
+               toggle_xscroll();
+               break;
+            case ESC :
+               restore_pos(p2);
+               break;
+            case ON_KEYSTATECHANGE :
+            case MOUSE_MOVE :
+               continue;
+            case WHEEL_UP :
+               if ( _IsKeyDown(CTRL) ) 
+                  cursor_up(8);
+               else 
+                  cursor_up();
+               continue;
+
+            case WHEEL_DOWN :
+               if ( _IsKeyDown(CTRL) ) 
+                  cursor_down(8);
+               else 
+                  cursor_down();
+               continue;
+
+            }
+            mou_mode(0);
+            mou_release();
+            break;
+         }
+         //center_line();
+         block_scroll_flag = true;
+         _set_timer(500, my_scroll_callback);
+         if ( try_call_key ) {
+            call_key(ev);
+         }
+         return;
+      }
+   }
+   fast_scroll();
+}
+
+
+_command void xscroll_up() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL)
+{
+   xscroll(true);
+}
+
+
+_command void xscroll_down() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL)
+{
+   xscroll(false);
+}
+
+// https://devdocs.io/cpp/
+
+// http://www.google.com/search?q=memcmp&as_sitesearch=cplusplus.com&btnI
+
+
+
+_command void toggle_xscroll(bool force_xscroll_off = false) name_info(',')
+{
+   if ( force_xscroll_off ) {
+      execute('bind-to-key -r fast_scroll 'event2index(name2event('WHEEL-UP')),"");
+      execute('bind-to-key -r fast_scroll 'event2index(name2event('WHEEL-DOWN')),"");
+      return;
+   }
+   if ( def_scroll_up_with_cursor == 0 ) {
+      if (_message_box('Enable scroll with cursor', "", MB_YESNO) != IDYES)  {
+         message("Cursor scrolling is disabled");
+         return;
+      }
+      def_scroll_up_with_cursor = 1;
+      scroll_up_with_cursor_key_bindings = 1;
+   }
+   scroll_up_with_cursor_key_bindings = (int)!scroll_up_with_cursor_key_bindings;
+
+   if ( scroll_up_with_cursor_key_bindings ) {
+      execute('bind-to-key -r fast_scroll 'event2index(name2event('WHEEL-UP')),"");
+      execute('bind-to-key -r fast_scroll 'event2index(name2event('WHEEL-DOWN')),"");
+      message("Bind to fast-scroll");
+   }
+   else {
+      execute('bind-to-key -r xscroll_up 'event2index(name2event('WHEEL-UP')),"");
+      execute('bind-to-key -r xscroll_down 'event2index(name2event('WHEEL-DOWN')),"");
+      message("Bind to xscroll");
+   }
+}
 
 

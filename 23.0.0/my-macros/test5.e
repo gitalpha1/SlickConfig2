@@ -7,7 +7,7 @@
 #pragma option(strictparens,on)
 
 
-
+#if 0
 _command void goto_editor_window_from_build() name_info(',')
 {
    int pl = p_line;
@@ -86,110 +86,12 @@ _command void testtime() name_info(',')
    message(_time('T') :+ "\n/n");
 }
 
+#endif
 
-int def_scroll_up_with_cursor;
-static int scroll_up_with_cursor_key_bindings;
-
-_command void my_scroll_up() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL)
-{
-   if ( def_scroll_up_with_cursor && !_IsKeyDown(SHIFT) || _IsKeyDown(CTRL) ) {
-      if ( p_window_id != null && _iswindow_valid(p_window_id) && p_window_id._isEditorCtl()) {
-
-         if ( substr(p_window_id.p_buf_name, 1, 1) == "." ) {
-            fast_scroll();
-            return;
-         }
-         if ( p_window_id != _get_focus() ) {
-            p_window_id._set_focus();
-         }
-
-         if (p_window_id.p_scroll_left_edge >= 0) 
-             p_window_id.p_scroll_left_edge = -1;
-
-         if ( _IsKeyDown(CTRL) ) 
-            cursor_up(8);
-         else 
-            cursor_up();
-
-         mou_mode(1);
-         mou_capture();
-
-         while ( 1 ) {
-            _str xevent = event2name(get_event('k'));
-            say("xevent " :+ xevent);
-            switch (xevent) {
-         
-            case WHEEL_UP :
-               continue;
-            }
-            mou_mode(0);
-            mou_release();
-            break;
-         }
-         //center_line();
-         return;
-      }
-   }
-   fast_scroll();
-}
-
-
-_command void my_scroll_down() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL)
-{
-   if ( def_scroll_up_with_cursor && !_IsKeyDown(SHIFT) || _IsKeyDown(CTRL) ) {
-      if ( p_window_id != null && _iswindow_valid(p_window_id) && p_window_id._isEditorCtl()) {
-
-         if ( substr(p_window_id.p_buf_name, 1, 1) == "." ) {
-            fast_scroll();
-            return;
-         }
-         if ( p_window_id != _get_focus() ) {
-            p_window_id._set_focus();
-         }
-         if (p_window_id.p_scroll_left_edge >= 0) 
-             p_window_id.p_scroll_left_edge = -1;
-
-         if ( _IsKeyDown(CTRL) ) 
-            cursor_down(8);
-         else 
-            cursor_down();
-
-         //center_line();
-         return;
-      }
-   }
-   fast_scroll();
-}
 
 // https://devdocs.io/cpp/
 
 // http://www.google.com/search?q=memcmp&as_sitesearch=cplusplus.com&btnI
-
-
-
-_command void toggle_scroll_with_cursor_keys() name_info(',')
-{
-   if ( def_scroll_up_with_cursor == 0 ) {
-      if (_message_box('Enable scroll with cursor', "", MB_YESNO) != IDYES)  {
-         message("Cursor scrolling is disabled");
-         return;
-      }
-      def_scroll_up_with_cursor = 1;
-      scroll_up_with_cursor_key_bindings = 1;
-   }
-   scroll_up_with_cursor_key_bindings = (int)!scroll_up_with_cursor_key_bindings;
-
-   if ( scroll_up_with_cursor_key_bindings ) {
-      execute('bind-to-key -r fast_scroll 'event2index(name2event('WHEEL-UP')),"");
-      execute('bind-to-key -r fast_scroll 'event2index(name2event('WHEEL-DOWN')),"");
-      message("Bind to fast-scroll");
-   }
-   else {
-      execute('bind-to-key -r my_scroll_up 'event2index(name2event('WHEEL-UP')),"");
-      execute('bind-to-key -r my_scroll_down 'event2index(name2event('WHEEL-DOWN')),"");
-      message("Bind to my-scroll");
-   }
-}
 
 
 static _str get_search_cur_word()
@@ -242,6 +144,8 @@ _command void search_devdocs_cpp() name_info(',')
    append_clipboard_text(sw);
    goto_url("https://devdocs.io/cpp/");
 }
+
+memset
 
 // memset
 

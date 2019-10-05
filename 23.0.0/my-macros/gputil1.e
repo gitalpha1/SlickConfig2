@@ -6,6 +6,7 @@
 #pragma option(strictparens,on)
 
 //#import "window.e"
+#include "se/ui/toolwindow.sh"
 
 
 static boolean is_wordchar(_str s1)
@@ -1104,19 +1105,59 @@ _command void myhelp() name_info(',')
 _command void show_preview() name_info(','VSARG2_MARK|VSARG2_REQUIRES_EDITORCTL|VSARG2_READ_ONLY)
 {
    int window_id = p_window_id;
-   activate_tool_window("_tbtagwin_form", true, "ctltaglist");
+   activate_preview();
    p_window_id = window_id;
    window_id._set_focus();
 }
 
 
-_command void preview_push_tag() name_info(','VSARG2_MARK|VSARG2_REQUIRES_EDITORCTL|VSARG2_READ_ONLY)
+_command void preview_push_tag() name_info(TAG_ARG','VSARG2_MARK|VSARG2_REQUIRES_EDITORCTL|VSARG2_REQUIRES_MDI|VSARG2_READ_ONLY)
 {
+   int wid = tw_find_form('_tbtagwin_form');
+   if ( wid > 0 && tw_is_auto(wid) ) {
+       push_tag();
+       return;
+   }
+   if ( wid <= 0 || !tw_is_wid_active(wid) ) {
    show_preview();
+      return;
+   }
    push_tag();
 }
 
 // TODO!:  MY TODO 1
 // TODO:  my todo 2
+
+
+_command void preview_push_tag2() name_info(TAG_ARG','VSARG2_MARK|VSARG2_REQUIRES_EDITORCTL|VSARG2_REQUIRES_MDI|VSARG2_READ_ONLY)
+{
+   int wid = tw_find_form('_tbtagwin_form');
+   if ( wid > 0 && tw_is_auto(wid) ) {
+      if ( !tw_is_auto_raised(wid) ) {
+         activate_preview();
+         return;
+      }
+      push_tag();
+      return;
+   }
+   if ( wid <= 0 || !tw_is_wid_active(wid) ) {
+      show_preview();
+      return;
+   }
+   push_tag();
+}
+
+
+defeventtab _tbtagwin_form;
+
+_tbtagwin_form."C-."()
+{
+   int wid = p_window_id;
+   _control ctl_push_tag;
+   ctl_push_tag.call_event(_control ctl_push_tag,LBUTTON_UP);
+   // uncomment the next line if you want the preview window to close when you use Ctrl-dot
+   // regardless of where the mouse cursor is
+   // toggle_preview();
+}
 
 

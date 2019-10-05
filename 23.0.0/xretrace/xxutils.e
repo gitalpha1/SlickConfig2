@@ -14,6 +14,20 @@ static boolean diff_region1_set;
 static _str diff_region1_filename;
 static boolean diff_region1_auto_length;
    
+_command void run_typora() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL)
+{
+   if (_no_child_windows()) {
+      _message_box("No buffer is open");
+      return;
+   }
+   if (_isno_name(p_DocumentName) || p_buf_name == '') {
+      _message_box("No buffer is open");
+      return;
+   }
+   save();
+   shell("typora " p_buf_name, "QA");
+}
+
 _command void xset_diff_region() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL|VSARG2_MARK)
 {
    if (_isno_name(p_DocumentName) || p_buf_name == '') {
@@ -360,6 +374,8 @@ _menu xmenu1 {
    "--","","","","";
    "&New temporary file", "xtemp_new_temporary_file", "","","";
    submenu "More","","","" {
+      "Search cplusplus.com", "search_cpp_ref", "", "", "";
+      "Search devdocs", "search_devdocs_cpp", "", "", "";
       "New temporary file no keep", "xtemp_new_temporary_file_no_keep", "","","";
       "Start xtemp file handler","start_xtemp_files_handler","","",""; 
       "Stop xtemp file handler","stop_xtemp_files_handler","","",""; 
@@ -1020,6 +1036,32 @@ _command void alternate_buffers() name_info(',')
 }
 
 
+
+
+// This macro requires google chrome browser and opens the cplusplus.com website at the cpp page
+// with the word at the cursor searched for
+_command void search_cpp_ref() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL)
+{
+   _str sw = get_search_cur_word();
+   if (sw == '') 
+      return;
+
+   goto_url("http://www.google.com/search?q=" :+ sw :+ "&as_sitesearch=cplusplus.com&btnI");
+}
+
+
+// This macro requires google chrome browser and opens the devdocs.io website at the cpp page
+// with the word at the cursor on the system clipboard
+_command void search_devdocs_cpp() name_info(','VSARG2_READ_ONLY|VSARG2_REQUIRES_EDITORCTL)
+{
+   _str sw = get_search_cur_word();
+   if (sw == '') 
+      return;
+
+   push_clipboard_itype('CHAR','',1,true);
+   append_clipboard_text(sw);
+   goto_url("https://devdocs.io/cpp/");
+}
 
 //=================================================================================================
 // diff2 borrowed from SlickTeam
